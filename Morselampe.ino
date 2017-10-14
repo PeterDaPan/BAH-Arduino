@@ -7,21 +7,25 @@ int dotLen = 100;     		// length of the morse code 'dot'
 int dashLen = dotLen * 3;    	// length of the morse code 'dash'
 int Spaces = dotLen * 3;     	// length of the spaces between characters
 int Pause = dotLen * 7;  	// length of the pause between words
-
+int input = 0;
 
 // the setup routine runs once when you press reset:
 void setup() {
 	pinMode(led13, OUTPUT);
-	Serial.begin(9600);
+	Serial.begin(9600); // open serial port baud rate 9600
 	while (!Serial) {
     		; // wait for serial port to connect. Needed for native USB port only
   	}
 }
 
-void loop() {
+void loop() 
+{
+	// alternative: while(Serial.available())
 	if (Serial)
 	{
+		input = Serial.read();
 		GetChar(input);	
+		Serial.print("received: %c/n", input);
 	}
 }
 
@@ -265,6 +269,147 @@ void GetChar(char tmpChar)
 		Space();
 		MorseDot();
 		break;
+	case '0';
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+		break;
+	case '1';
+		MorseDot();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+		
+		break;
+	case '2';
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+		
+		break;
+	case '3';
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+		
+		break;
+	case '4';
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+	    	MorseDash();
+		Space();
+		
+		break;
+	case '5';
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		
+		break;
+	case '6';
+	    	MorseDash();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		
+		break;
+	case '7';
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		
+		break;
+	case '8';
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+		MorseDot();
+		Space();
+		MorseDot();
+		Space();
+		
+		break;
+	case '9';
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+	    	MorseDash();
+		Space();
+		MorseDot();
+		Space();
+		
+		break;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	  default:
 		// If a matching character was not found it will default to a blank space
 		Space();
