@@ -1,0 +1,79 @@
+    // by PeterDaPan
+    int ledPin = 13;
+    char readChar;
+    String readStr;
+    boolean newData = false;
+    
+    void setup() {
+    pinMode(ledPin, OUTPUT);
+    Serial.begin(9600);
+    Serial.println("<Arduino is ready>");
+ 
+    }
+    
+    void loop(){
+    recvOneChar();
+    showNewData();
+    }
+    
+    void recvOneChar() {
+      if (Serial.available() > 0) {
+        readStr = Serial.readString();
+        newData = true;;
+      }
+    }
+    void showNewData() {
+      if (newData){
+        Serial.println("Showdata#########################################");
+        Serial.println(readStr);
+        newData = false;
+        for(int i=0; i < readStr.length();i++){
+          readChar = readStr[i];
+          Serial.println(readChar);
+          switch(readChar){
+            case 'a':
+                  kurz();
+                  lang();
+                  break;
+            case 'b':
+                  lang();
+                  kurz();
+                  kurz();
+                  kurz();
+                  break;
+            case 'c':
+                  lang();
+                  kurz();
+                  lang();
+                  kurz();
+                  break;
+            case 'd':
+                  lang();
+                  kurz();
+                  kurz();
+                  break;
+            case 'e':
+                  kurz();
+                  break;
+            default:
+                  break;
+          }
+        }
+        Serial.println("/Showdata########################################");
+      }
+    }
+    void kurz(){
+        Serial.println("kurz");
+        digitalWrite(ledPin, HIGH);
+        delay(500); 
+        digitalWrite(ledPin, LOW);
+        delay(1000); 
+    }
+    void lang(){
+        Serial.println("lang");
+        digitalWrite(ledPin, HIGH);
+        delay(2000); 
+        digitalWrite(ledPin, LOW);
+        delay(1000); 
+    }
+
