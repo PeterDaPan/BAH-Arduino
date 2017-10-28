@@ -174,8 +174,8 @@ int main()
      *      Serial.begin(9600); //höfig meinte irgendwas mit 7?
      *
      *      // Drehpulse sind inputs
-     *      pinMode(pinA, INPUT);
-     *      pinMode(pinB, INPUT);
+     *      pinMode(pinA, INPUT_PULLUP);
+     *      pinMode(pinB, INPUT_PULLUP);
      *
      *      attachInterrupt(digitalPinToInterrupt(PinA), isr, LOW);
      *
