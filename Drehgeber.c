@@ -169,13 +169,35 @@ void printMenue()
 }
 int main()
 {
-    //Setup()
+    /*
+     * void setup() {
+     *      Serial.begin(9600); //höfig meinte irgendwas mit 7?
+     *
+     *      // Drehpulse sind inputs
+     *      pinMode(pinA, INPUT);
+     *      pinMode(pinB, INPUT);
+     *
+     *      attachInterrupt(digitalPinToInterrupt(PinA), isr, LOW);
+     *
+     *      //Ready
+     *      Serial.println("Start");
+     */
     state = 3;//welchen State ist eigendlich egal
     stateCounter =0; // Das ist der zähler
     int A=0;
 
 
-    //loop
+    /*
+     * loop() {
+     *
+     * // wenn die aktuelle position nicht der letztes entspricht updaten wir alles
+     * Serial.print(virtualPosition > lastCount ? "Uhrezigersinn: " : "Gegenuhrzeigers.: ");
+     * Serial.println(virtualPosition);
+     *
+     *  //wert verfolgen
+     *  lastCount = virtualPosition;
+     */
+
     printMenue();
     do
     {
