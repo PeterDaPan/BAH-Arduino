@@ -1,0 +1,88 @@
+//PeterDaPan
+
+int pinA = 3;
+int pinB = 2;
+int eA,eB; 
+int input = 5;
+bool buttonStateA, buttonStateB;
+enum states{
+  s0,s1,s2,s3
+};
+enum states state = s0;
+
+int zaehlerwoichkeineahnunghabwannerzaehlensoll = 0; //Oder wo
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(pinA, INPUT_PULLUP);
+  pinMode(pinB, INPUT_PULLUP);
+  Serial.begin(9600);
+  Serial.print("<Hallo Ardu>");
+  attachInterrupt(1, funcState1, CHANGE);
+  attachInterrupt(0, funcState0, CHANGE);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  
+  //printOnStrea(input);
+  stateMachine();
+}
+void printOnStrea(int in){
+  Serial.println(in);
+}
+
+void funcState0(){
+  eA = digitalRead(pinA);
+  //Serial.println(in);
+  if (buttonStateA != eA){
+    buttonStateA = eA;
+    Serial.println("Button A");
+    printOnStrea(buttonStateA);
+  }
+  
+}
+void funcState1(){
+  eB = digitalRead(pinB);
+  //Serial.println(in);
+  
+  if (buttonStateB != eB){
+    buttonStateB = eB;
+    Serial.println("Button B");
+    printOnStrea(buttonStateB);
+  }
+}
+
+void stateMachine(){
+  switch(state){
+    case s0:
+    
+      zaehlerwoichkeineahnunghabwannerzaehlensoll =+ 1;
+      Serial.print(zaehlerwoichkeineahnunghabwannerzaehlensoll);
+      if (0 == buttonStateA){
+        state = s1;
+      }else if ( 1 == buttonStateB){
+        state = s3;
+      }
+    case s1:
+      if (1 == buttonStateA){
+        state = s0;
+      }else if (0 == buttonStateB){
+        state = s2;
+      }
+    case s2:
+      if (1 == buttonStateA){
+        state = s3;
+      }else if (1 == buttonStateB){
+        state = s1;
+      }
+    case s3:
+      if (0 == buttonStateA){
+        state = s1;
+      }else if ( 1 == buttonStateB){
+        state = s0;
+      }
+  }
+}
+
+
