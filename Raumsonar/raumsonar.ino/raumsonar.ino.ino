@@ -1,3 +1,10 @@
+/**
+ * Hardware Setup:
+ * ARDUINO UNO
+ * ULTRASONIC SENSOR HC-SR04
+ * SERVO SG90
+ */
+
 #include <Servo.h>
  
 #define MAX_DISTANCE 100
