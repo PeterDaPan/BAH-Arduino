@@ -28,25 +28,25 @@ static unsigned long LastInterruptTime;
 // INTERRUPT SERVICE ROUTINE 
 void isr()
 {    
-    unsigned long interruptTime = millis();
-
-  // wenn interrupt schneller kommt als erwartet nehmen wir an, der drehgeber prellt und ignorieren ihn 
-  	if (interruptTime - LastInterruptTime > 2)
-  	{
-        Serial.println("Entering ISR");
-        stateMachine();
-        // Übersicht behalten wann wir zuletzt hier waren
-        LastInterruptTime = interruptTime;
-      } 
+    if (digitalRead(pinA) == 1){
+      if (B != digitalRead(pinB){
+        B =digitalRead(pinB);
+      }
+    }
+    //wenn A=0 -> A=1 Rising
+    //wenn A=1 -> A=0 Falling
+   // if (Aold != digitalRead(pinA)){
+   //     A= digitalRead(pinA)
+   //   }
+  
+  //  A=digitalRead(pinA);
+  //  B=digitalRead(pinB); 
 }
 
 // STATE MACHINE 
 void stateMachine()
 {
     Serial.println("Entering SM");
-
-    A=digitalRead(pinA);
-    B=digitalRead(pinB);    
 
     Serial.print("State :");
     Serial.print(A);
@@ -169,4 +169,8 @@ void setup() {
   
 }
 
-void loop() { }
+void loop() { 
+  
+          stateMachine();
+
+  }
